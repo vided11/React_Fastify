@@ -12,8 +12,7 @@
     "fastify": "^5.1.0",
     "pg": "^8.7.0",
     "sequelize": "^6.19.0",
-    "url": "^0.11.4",
-    "uuid": "^11.0.3"
+    "url": "^0.11.4"
   },
   "devDependencies": {
     "nodemon": "^3.1.7"

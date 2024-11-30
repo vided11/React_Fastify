@@ -4,7 +4,25 @@ import itemRoutes from './routes/itemRoutes.js';
 import systemRoutes from './routes/systemRoutes.js';
 
 const fastify = Fastify({
-  logger: true
+  logger: {
+    level: 'info',
+    requestIdLogLabel: 'requestId',
+    serializers: {
+      req(request) {
+        return {
+          method: request.method,
+          url: request.url,
+          hostname: request.hostname,
+          remoteAddress: request.ip,
+          requestId: request.id
+        };
+      }
+    }
+  },
+  requestIdHeader: 'x-request-id',
+  genReqId: function (request) {
+    return request.headers['x-request-id'] || crypto.randomUUID();
+  }
 });
 
 fastify.register(cors, {
